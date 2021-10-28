@@ -22,8 +22,8 @@ exports.getAllProducts =async(req,res)=>{
 
 //Update Product-- Admin
 
-exports.updatePorduct= async(req,res,next)=>{
-    let product = await Product.findById(req.param.id);
+exports.updateProduct= async(req,res,next)=>{
+    let product = await Product.findById(req.params.id);
     if(!product)
     {
         return res.status(500).json({
@@ -40,4 +40,30 @@ exports.updatePorduct= async(req,res,next)=>{
         success:true,
         product
     })
+}
+
+// Delete Product
+
+exports.deleteProduct = async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+
+  if(!product)
+    {
+        return res.status(500).json({
+            success:false,
+            message:"Product not found"
+        })
+    }
+
+//   // Deleting Images From Cloudinary
+//   for (let i = 0; i < product.images.length; i++) {
+//     await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+//   }
+
+  await product.remove();
+
+  res.status(200).json({
+    success: true,
+    message: "Product Delete Successfully",
+  });
 }
