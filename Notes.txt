@@ -1,0 +1,17 @@
+If we replace mongodb with just mongo in the config file then it is known as "Unhandled Promise Rejection"
+Whenever this type error comes or occurs we have to forcefully shut down the server so that the server doesn't get burnt down
+We have handled this error in the server.js file
+
+Another type of error is "Uncaught Error"
+Uncaught Errors are the errors which occur when we are using a variable which is not defined anywhere in the program
+We have to handle Uncaught errors in the starting of the file because if we handle them at the end then it will of no use because the undefined varaible would already have been used anywhere in the upper protion of the file. 
+The handle for Uncaught Errors is done at the starting of the server.js file
+
+The last type of error is "mongodb error". Which has been handled in error.js file itself.
+One type of MongoDb error is "cast error". In cast error, if we give a very small id of an object for example of length 4, then mongoDb knows that there is no object with such small length id and hence it will show a cast error
+
+Javascript me jitne bhi objects hai vo through refernce pass hote hai
+
+"..." is known as spread operator in JAVASCRIPT.It is used to make shallow copies of JS objects. We have done that so that the changes we do in the variable querycopy do not reflect in queryStr because in javascript the objects are passed as call by reference so the changes we would have done in the variable qureycopy would also have reflected in the original qureyStr which we do not want"
+
+2:28:58, Abhishek has written enteresPassoword and you have written only password in the file userModel.js under the ComparePassword Section
