@@ -86,7 +86,7 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
 //   }
 
 //   // Get ResetPassword Token
-//   const resetToken = user.getResetPasswordToken();
+//   const resetToken = user.getResetPasswordToken(); 
 
 //   await user.save({ validateBeforeSave: false });
 
