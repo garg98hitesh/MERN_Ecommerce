@@ -26,12 +26,17 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
 exports.authorizeRoles = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      return next(new ErrorHander(`Role: ${req.user.role} is not allowed to access this resouce `,403));
-    //    res.status(403).json({
-    //      code: 403,
-    //      msg: `Role: ${req.user.role} is not allowed to access this resouce `,
-    //    });
-     }
+      return next(
+        new ErrorHander(
+          `Role: ${req.user.role} is not allowed to access this resouce `,
+          403
+        )
+      );
+      //    res.status(403).json({
+      //      code: 403,
+      //      msg: `Role: ${req.user.role} is not allowed to access this resouce `,
+      //    });
+    }
 
     next();
   };
