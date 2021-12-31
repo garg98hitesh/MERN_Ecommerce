@@ -34,7 +34,7 @@ app.use("/api/v1", user);
 //Middleware for Error
 
 app.use(errorMiddleware);
-const port=process.env.PORT 
+const port = process.env.PORT || 5000
 
 
 module.exports = app;

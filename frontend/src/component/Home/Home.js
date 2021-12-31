@@ -2,11 +2,11 @@ import React, { Fragment, useEffect } from "react";
 import { CgMouse } from "react-icons/all";
 import "./Home.css";
 import ProductCard from "./ProductCard.js";
- import MetaData from "../layout/MetaData";
+import MetaData from "../layout/MetaData";
 import { clearErrors, getProduct } from "../../actions/productAction";
- import { useSelector, useDispatch } from "react-redux";
- import Loader from "../layout/Loader/Loader";
- import { useAlert } from "react-alert";
+import { useSelector, useDispatch } from "react-redux";
+import Loader from "../layout/Loader/Loader";
+import { useAlert } from "react-alert";
 
 //This is a temporary object named Product until we do not fetch the product from the redux we are just initializing it to have some data till then
 // const product={
@@ -17,9 +17,9 @@ import { clearErrors, getProduct } from "../../actions/productAction";
 // }
 
 const Home = () => {
-     const alert = useAlert();
-     const dispatch = useDispatch();
-     const { loading, error, products } = useSelector((state) => state.products);
+    const alert = useAlert();
+    const dispatch = useDispatch();
+    const { loading, error, products } = useSelector((state) => state.products);
     console.log(products)
     useEffect(() => {
         if (error) {
@@ -27,12 +27,12 @@ const Home = () => {
             dispatch(clearErrors());
         }
         dispatch(getProduct());
-       console.log("fetching!!!");
-     }, [dispatch, error, alert]);
+        console.log("fetching!!!");
+    }, []);
 
     return (
         // Whether we enclose it into a fragment or <></> its one and the same thing, we generally write fragment to make it more readable
-        <Fragment>   
+        <Fragment>
             {loading ? (
                 <Loader />
             ) : (
@@ -53,7 +53,7 @@ const Home = () => {
                     <h2 className="homeHeading">Featured Products</h2>
 
                     <div className="container" id="container">
-                    {/* <ProductCard product={product}/>
+                        {/* <ProductCard product={product}/>
                     <ProductCard product={product}/>
                     <ProductCard product={product}/>
                     <ProductCard product={product}/>
@@ -61,14 +61,15 @@ const Home = () => {
                     <ProductCard product={product}/>
                     <ProductCard product={product}/>
                     <ProductCard product={product}/> */}
-                        
-                    </div>{products &&
-                            products.map((product) => (
-                                <ProductCard key={product._id} product={product} />
-                            ))}
+
+                   {products &&
+                        products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                        </div>
                 </Fragment>
             )}
-         </Fragment>
+        </Fragment>
     );
 };
 

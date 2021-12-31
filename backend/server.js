@@ -37,7 +37,7 @@
 // })
 
 const app = require("./app");
- const dotenv = require("dotenv");
+const dotenv = require("dotenv");
 
 
 const cloudinary = require("cloudinary");
@@ -67,9 +67,9 @@ cloudinary.config({
 });
 
 
-
-const server = app.listen(process.env.PORT, () => {
-    console.log(`Server is working on http://localhost:${process.env.PORT}`);
+const Port = process.env.PORT || 4000
+const server = app.listen(Port, () => {
+    console.log(`Server is working on http://localhost:${Port}`);
 });
 
 // Unhandled Promise Rejection

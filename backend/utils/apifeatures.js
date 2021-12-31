@@ -2,19 +2,21 @@ class ApiFeatures {
   constructor(query, queryStr) {
     this.query = query;
     this.queryStr = queryStr;
+    console.log("query ", query)
+    console.log("queryStr", queryStr)
   }
 
   search() {
     const keyword = this.queryStr.keyword
       ? {
-          name: {
-            $regex: this.queryStr.keyword,
-            $options: "i",
-          },
-        }
+        name: {
+          $regex: this.queryStr.keyword,
+          $options: "i",
+        },
+      }
       : {};
 
-    this.query = this.query.find({ ...keyword });
+    this.query = this.query.find({ ...keyword }).clone();
     return this;
   }
 
@@ -35,12 +37,12 @@ class ApiFeatures {
     return this;
   }
 
-   pagination(resultPerPage) {
+  pagination(resultPerPage) {
     const currentPage = Number(this.queryStr.page) || 1;
 
     const skip = resultPerPage * (currentPage - 1);
 
-    this.query = this.query.limit(resultPerPage).skip(skip);
+    this.query = this.query.clone().limit(resultPerPage).skip(skip);
 
     return this;
   }

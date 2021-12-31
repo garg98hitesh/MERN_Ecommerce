@@ -19,7 +19,8 @@ const Profile = ({ history }) => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={`${user.name}'s Profile`} /> load user ki help se humne saara data save kar rakha hai website load hote hi hence we can get the name of the user using user.name
+          <MetaData title={`${user.name}'s Profile`} /> 
+           {/*[For upper line] load user ki help se humne saara data save kar rakha hai website load hote hi hence we can get the name of the user using user.name */}
           <div className="profileContainer">
             <div>
               <h1>My Profile</h1>

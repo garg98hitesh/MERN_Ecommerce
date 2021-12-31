@@ -12,7 +12,7 @@ import Loader from "../layout/Loader/Loader";
 import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { useAlert } from "react-alert";
- import MetaData from "../layout/MetaData";
+import MetaData from "../layout/MetaData";
 // import { addItemsToCart } from "../../actions/cartAction";
 // import {
 //   Dialog,
@@ -101,7 +101,7 @@ const ProductDetails = ({ match }) => {
         //   alert.success("Review Submitted Successfully");
         //   dispatch({ type: NEW_REVIEW_RESET });
         // }
-        console.log()
+        console.log("product ", product)
         dispatch(getProductDetails(id));
     }, [dispatch, error, alert,
         // reviewError, success
@@ -130,7 +130,7 @@ const ProductDetails = ({ match }) => {
                             <Carousel>
                                 {product.images &&
                                     product.images.map((item, i) => {
-                                       
+
                                         return <img
                                             className="CarouselImage"
                                             key={item.url}

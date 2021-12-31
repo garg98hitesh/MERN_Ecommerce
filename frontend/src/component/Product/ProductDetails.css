@@ -22,8 +22,13 @@
   align-items: flex-start;
 }
 
+.makeStyles-root-16 {
+width:400px;
+}
+
 .CarouselImage {
-  width: 20vmax;
+  width: 200px !important;
+  height:300px !important;
 }
 
 .detailsBlock-1 > h2 {
