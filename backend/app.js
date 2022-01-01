@@ -18,6 +18,7 @@ app.use(cors());
 // app.use(errorMiddleware)
 const product = require("./routes/productRoute");
 const user = require("./routes/userRoute");
+const order = require("./routes/orderRoute");
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header(
@@ -30,6 +31,7 @@ app.use(function (req, res, next) {
 
 app.use("/api/v1", product);
 app.use("/api/v1", user);
+app.use("/api/v1", order);
 
 //Middleware for Error
 

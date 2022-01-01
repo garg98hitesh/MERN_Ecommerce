@@ -6,8 +6,9 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, login,  register
- } from "../../actions/userAction";
+import {
+  clearErrors, login, register
+} from "../../actions/userAction";
 import { useAlert } from "react-alert";
 
 const LoginSignUp = () => {
@@ -39,9 +40,9 @@ const LoginSignUp = () => {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(loginEmail, loginPassword));
+    dispatch(login(loginEmail, loginPassword, history));
   };
- 
+
   const registerSubmit = (e) => {
     e.preventDefault();
 
@@ -71,9 +72,9 @@ const LoginSignUp = () => {
     }
   };
 
-  const redirect = 
-  // location.search ? location.search.split("=")[1] :
-   "/account";
+  const redirect =
+    // location.search ? location.search.split("=")[1] :
+    "/account";
 
   useEffect(() => {
     if (error) {
@@ -81,10 +82,10 @@ const LoginSignUp = () => {
       dispatch(clearErrors());
     }
 
-    if (isAuthenticated) {
-     history(redirect);
-    }
-  }, [dispatch, error, alert, history, isAuthenticated, redirect ]);
+    // if (isAuthenticated) {
+    //  history(redirect);
+    // }
+  }, [error, alert]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -118,8 +119,8 @@ const LoginSignUp = () => {
                 </div>
                 <button ref={switcherTab}></button>
               </div>
-              <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}> 
-              {/* In React we cannot access the elements of dom directly, for that we have to use "useRef", i.e. if we would have used document.querySelector("loginForm"), then we could not have accessed the loginForm because in react we cannot access the dom elements like this, hence we have used ref in the above line */}
+              <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
+                {/* In React we cannot access the elements of dom directly, for that we have to use "useRef", i.e. if we would have used document.querySelector("loginForm"), then we could not have accessed the loginForm because in react we cannot access the dom elements like this, hence we have used ref in the above line */}
                 <div className="loginEmail">
                   <MailOutlineIcon />
                   <input

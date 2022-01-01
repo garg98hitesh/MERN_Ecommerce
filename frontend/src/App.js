@@ -17,13 +17,13 @@ import ProductDetails from "./component/Product/ProductDetails.js";
 import Products from "./component/Product/Products";
 import Search from "./component/Product/Search";
 import LoginSignUp from "./component/User/LoginSignUp";
- import store from "./store";
- import { loadUser } from "./actions/userAction";
+import store from "./store";
+import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/Header/UserOptions.js";
- import { useSelector } from "react-redux";
- import Profile from "./component/User/Profile";
- import ProtectedRoute from "./component/Route/ProtectedRoute";
- import UpdateProfile from "./component/User/UpdateProfile";
+import { useSelector } from "react-redux";
+import Profile from "./component/User/Profile";
+import ProtectedRoute from "./component/Route/ProtectedRoute";
+import UpdateProfile from "./component/User/UpdateProfile";
 // import UpdatePassword from "./component/User/UpdatePassword";
 // import ForgotPassword from "./component/User/ForgotPassword";
 // import ResetPassword from "./component/User/ResetPassword";
@@ -63,7 +63,7 @@ function App() {
     });
     store.dispatch(loadUser());
   }, []);
-console.log("Renderring");
+  console.log("Renderring");
   return (
     <Router>
       <Header />
@@ -74,10 +74,13 @@ console.log("Renderring");
         <Route path='/product/:keyword' element={<ProductDetails />} />
         <Route path='/products' element={<Products />} />
         <Route path='/search' element={<Search />} />
-        <Route path='/login' element={<LoginSignUp/>} />
-        <Route path='/login' element={<LoginSignUp/>} />
-        <Route path='/account' element={<ProtectedRoute isAdmin={false}><Profile /></ProtectedRoute>} />
-        <Route path='/me/update' element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>}/>
+        <Route path='/login' element={<LoginSignUp />} />
+        <Route path='/login' element={<LoginSignUp />} />
+        <Route path='/account' element={<ProtectedRoute isAdmin={false}><Profile /></ProtectedRoute>}
+
+        />
+        {/* <ProtectedRoute isAdmin={false} path="/account" component={<Profile />}></ProtectedRoute> */}
+        <Route path='/me/update' element={<ProtectedRoute isAdmin={false}><UpdateProfile /></ProtectedRoute>} />
       </Routes>
       <Footer />
     </Router>

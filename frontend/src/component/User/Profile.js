@@ -10,7 +10,8 @@ const Profile = ({ history }) => {
 
   useEffect(() => {
     if (isAuthenticated === false) {
-      history.push("/login");
+      console.log(history)
+      history("/login");
     }
   }, [history, isAuthenticated]);
   return (
@@ -19,26 +20,26 @@ const Profile = ({ history }) => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={`${user.name}'s Profile`} /> 
-           {/*[For upper line] load user ki help se humne saara data save kar rakha hai website load hote hi hence we can get the name of the user using user.name */}
+          <MetaData title={`${user?.name}'s Profile`} />
+          {/*[For upper line] load user ki help se humne saara data save kar rakha hai website load hote hi hence we can get the name of the user using user.name */}
           <div className="profileContainer">
             <div>
               <h1>My Profile</h1>
-              <img src={user.avatar.url} alt={user.name} />
+              <img src={user?.avatar?.url} alt={user?.name} />
               <Link to="/me/update">Edit Profile</Link>
             </div>
             <div>
               <div>
                 <h4>Full Name</h4>
-                <p>{user.name}</p>
+                <p>{user?.name}</p>
               </div>
               <div>
                 <h4>Email</h4>
-                <p>{user.email}</p>
+                <p>{user?.email}</p>
               </div>
               <div>
                 <h4>Joined On</h4>
-                <p>{String(user.createdAt).substr(0, 10)}</p>
+                <p>{String(user?.createdAt).substr(0, 10)}</p>
               </div>
 
               <div>
