@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
     clearErrors,
     getProductDetails,
-    //newReview,
+    newReview,
 } from "../../actions/productAction";
 import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader";
@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
-// import { addItemsToCart } from "../../actions/cartAction";
+ import { addItemsToCart } from "../../actions/cartAction";
 // import {
 //   Dialog,
 //   DialogActions,
@@ -46,29 +46,29 @@ const ProductDetails = ({ match }) => {
     //     precision: 0.5,
     //   };
 
-    //   const [quantity, setQuantity] = useState(1);
+      const [quantity, setQuantity] = useState(1);
     //   const [open, setOpen] = useState(false);
     //   const [rating, setRating] = useState(0);
     //   const [comment, setComment] = useState("");
 
-    //   const increaseQuantity = () => {
-    //     if (product.Stock <= quantity) return;
+      const increaseQuantity = () => {
+        if (product.Stock <= quantity) return;
 
-    //     const qty = quantity + 1;
-    //     setQuantity(qty);
-    //   };
+        const qty = quantity + 1;
+        setQuantity(qty);
+      };
 
-    //   const decreaseQuantity = () => {
-    //     if (1 >= quantity) return;
+      const decreaseQuantity = () => {
+        if (1 >= quantity) return;
 
-    //     const qty = quantity - 1;
-    //     setQuantity(qty);
-    //   };
+        const qty = quantity - 1;
+        setQuantity(qty);
+      };
 
-    //   const addToCartHandler = () => {
-    //     dispatch(addItemsToCart(match.params.id, quantity));
-    //     alert.success("Item Added To Cart");
-    //   };
+      const addToCartHandler = () => {
+        dispatch(addItemsToCart(match.params.id, quantity));
+        alert.success("Item Added To Cart");
+      };
 
     //   const submitReviewToggle = () => {
     //     open ? setOpen(false) : setOpen(true);
@@ -172,8 +172,8 @@ const ProductDetails = ({ match }) => {
                                         >+</button>
                                     </div>{" "}
                                     <button
-                                    // disabled={product.Stock < 1 ? true : false}
-                                    // onClick={addToCartHandler}
+                                    disabled={product.Stock < 1 ? true : false}
+                                    onClick={addToCartHandler}
                                     >
                                         Add to Cart
                                     </button>

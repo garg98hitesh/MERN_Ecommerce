@@ -77,6 +77,12 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
+exports.pingProtectedApi = catchAsyncErrors((req, res, next) => {
+  res.json({
+    msg: "pong"
+  })
+})
+
 // Forgot Password
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });

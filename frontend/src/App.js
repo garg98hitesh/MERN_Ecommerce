@@ -27,7 +27,7 @@ import UpdateProfile from "./component/User/UpdateProfile";
 // import UpdatePassword from "./component/User/UpdatePassword";
 // import ForgotPassword from "./component/User/ForgotPassword";
 // import ResetPassword from "./component/User/ResetPassword";
-// import Cart from "./component/Cart/Cart";
+ import Cart from "./component/Cart/Cart";
 // import Shipping from "./component/Cart/Shipping";
 // import ConfirmOrder from "./component/Cart/ConfirmOrder";
 // import axios from "axios";
@@ -75,12 +75,13 @@ function App() {
         <Route path='/products' element={<Products />} />
         <Route path='/search' element={<Search />} />
         <Route path='/login' element={<LoginSignUp />} />
-        <Route path='/login' element={<LoginSignUp />} />
-        <Route path='/account' element={<ProtectedRoute isAdmin={false}><Profile /></ProtectedRoute>}
-
-        />
+        {/* <Route path='/login' element={<LoginSignUp />} /> */}
+        <Route path='/account' element={<ProtectedRoute isAdmin={false}><Profile /></ProtectedRoute>}/>
+        
         {/* <ProtectedRoute isAdmin={false} path="/account" component={<Profile />}></ProtectedRoute> */}
         <Route path='/me/update' element={<ProtectedRoute isAdmin={false}><UpdateProfile /></ProtectedRoute>} />
+       
+        <Route path='/cart' element={<Cart />} />
       </Routes>
       <Footer />
     </Router>

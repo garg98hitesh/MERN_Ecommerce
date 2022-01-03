@@ -14,7 +14,7 @@ app.use(fileUpload());
 
 //Route Imports
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 // app.use(errorMiddleware)
 const product = require("./routes/productRoute");
 const user = require("./routes/userRoute");

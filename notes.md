@@ -44,4 +44,6 @@ Frontend
 22. npm i express-fileupload coudinary to be used in complete project at 8:02:00
 23. logout implemented from 8:11:30 
 24. npm i @material-ui/lab in frontend at 8:14:00
+25. Product quantity increase and decrease on ProductDetails page handled at 9:48:00
+26. Add to cart on ProductDetails page handled at 9:52:00
 

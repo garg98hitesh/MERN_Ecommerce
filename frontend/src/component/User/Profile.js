@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
+import axios from "axios"
 import "./Profile.css";
 
 const Profile = ({ history }) => {
@@ -12,8 +13,22 @@ const Profile = ({ history }) => {
     if (isAuthenticated === false) {
       console.log(history)
       history("/login");
+
     }
   }, [history, isAuthenticated]);
+  const checkApi = async () => {
+    try {
+      const config = { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "https://localhost:4000" }, withCredentials: true, };
+      const { data } = await axios.get(
+        `http://localhost:4000/api/v1/ping`,
+        config
+      );
+      console.log(data)
+    }
+    catch (err) {
+      console.log("ping error", err)
+    }
+  }
   return (
     <Fragment>
       {loading ? (
@@ -47,6 +62,7 @@ const Profile = ({ history }) => {
                 <Link to="/password/update">Change Password</Link>
               </div>
             </div>
+            <button onClick={checkApi}>Check api</button>
           </div>
         </Fragment>
       )}
