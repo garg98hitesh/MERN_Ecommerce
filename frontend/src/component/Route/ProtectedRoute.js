@@ -51,9 +51,11 @@ import { useNavigate, Navigate } from 'react-router-dom';
 const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
   const { loading, isAuthenticated, user } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  console.log("comp ", Component)
+  console.log("comp ", rest.children)
   console.log("protected rerendering")
-  return (isAuthenticated === false ? <Navigate to="/login" /> : (
+  console.log("check status ", isAuthenticated)
+  if (loading === true) return <p style={{ fontSize: "50px", height: "100vh", background: "red" }}>loding.....</p>
+  return (loading === false && isAuthenticated === false ? <Navigate to="/login" /> : (
     <Fragment>
       {loading === false && rest.children}
       {/* <Route

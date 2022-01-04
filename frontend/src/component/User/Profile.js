@@ -4,6 +4,7 @@ import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import axios from "axios"
+import { getInstance } from "../../config/api"
 import "./Profile.css";
 
 const Profile = ({ history }) => {
@@ -18,10 +19,10 @@ const Profile = ({ history }) => {
   }, [history, isAuthenticated]);
   const checkApi = async () => {
     try {
-      const config = { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "https://localhost:4000" }, withCredentials: true, };
-      const { data } = await axios.get(
-        `http://localhost:4000/api/v1/ping`,
-        config
+      const ins = await getInstance()
+      // const config = { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "https://localhost:4000" }, withCredentials: true, };
+      const { data } = await ins.get(
+        `/ping`
       );
       console.log(data)
     }

@@ -30,6 +30,7 @@ import {
   //   DELETE_REVIEW_FAIL,
   CLEAR_ERRORS,
 } from "../constants/productConstants";
+import { getInstance as ins } from "../config/api"
 
 // // Get All Products
 export const getProduct =
@@ -39,13 +40,14 @@ export const getProduct =
       console.log("Fetching products---------->");
       try {
         dispatch({ type: ALL_PRODUCT_REQUEST });
-        let link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]} &ratings[gte]=${ratings}`;
+        let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]} &ratings[gte]=${ratings}`;
 
         if (category) {
-          link = `http://localhost:4000/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+          link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
         }
         console.log("reached api")
-        const { data } = await axios.get(link);
+        const instance=await ins()
+        const { data } = await instance.get(link);
         //  const { data } = await axios.get("http://localhost:4000/api/v1/products"); //This line is just a temporary replacement of the line just above because we do not have the link yet 
         console.log("products" + data);
         console.log("success-pro")
@@ -159,8 +161,8 @@ export const getProductDetails = (id) => async (dispatch) => {
   console.log("Hello")
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
-
-    const { data } = await axios.get(`http://localhost:4000/api/v1/product/${id}`);
+    const instance = await ins()
+    const { data } = await instance.get(`/product/${id}`);
 
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,

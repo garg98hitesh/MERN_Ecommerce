@@ -37,7 +37,7 @@ import {
   CLEAR_ERRORS,
 } from "../constants/userConstants";
 import axios from "axios";
-
+import { getInstance as ins } from "../config/api"
 // Login
 export const login = (email, password, history) => async (dispatch) => {
   try {
@@ -51,8 +51,8 @@ export const login = (email, password, history) => async (dispatch) => {
       config
     );
     console.log("login data", data)
+    await localStorage.setItem("token", data.token)
     dispatch({ type: LOGIN_SUCCESS, payload: data?.user });
-
     console.log("reached")
     history("/account")
   } catch (error) {
@@ -70,6 +70,7 @@ export const register = (userData) => async (dispatch) => {
 
     const { data } = await axios.post(`http://localhost:4000/api/v1/register`, userData, config);
     console.log("user data", data)
+    await localStorage.setItem("token", data.token)
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
   } catch (error) {
     console.log("register error", error)
@@ -84,14 +85,13 @@ export const register = (userData) => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
-
-    const { data } = await axios.get(`http://localhost:4000/api/v1/me`);
-
+    const instance = await ins()
+    const { data } = await instance.get(`/me`);
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
-    console.log("load success ", success)
+    console.log("load success ")
   } catch (error) {
     console.log("load error ", error)
-    dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+    dispatch({ type: LOAD_USER_FAIL, payload: error.response.data?.message });
   }
 };
 

@@ -14,7 +14,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
         shippingPrice,
         totalPrice,
     } = req.body;
-
+    console.log("order user ", req.user)
     const order = await Order.create({
         shippingInfo,
         orderItems,
@@ -24,7 +24,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
         shippingPrice,
         totalPrice,
         paidAt: Date.now(),
-        user: req.user._id,
+        user: req.user.id,
     });
 
     res.status(201).json({
@@ -89,11 +89,12 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHander("You have already delivered this order", 400));
     }
 
-    if (req.body.status === "Shipped") {
+   
+
         order.orderItems.forEach(async (o) => {
             await updateStock(o.product, o.quantity);
         });
-    }
+    
     order.orderStatus = req.body.status;
 
     if (req.body.status === "Delivered") {
